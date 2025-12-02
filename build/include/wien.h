@@ -21,7 +21,7 @@ typedef struct {
     int defined;
 } CompileBlock;
 
-// === Глобальные состояния ===
+// Глобальные состояния 
 extern char var_names[MAX_VARS][MAX_NAME_LEN];
 extern char var_values[MAX_VARS][MAX_VALUE_LEN];
 extern int var_count;
@@ -32,7 +32,6 @@ extern int comp_block_count;
 extern int skip_mode;
 extern int skip_depth;
 
-// Новое: .default и .clean
 extern char default_targets[512];
 extern char clean_targets[1024];
 
