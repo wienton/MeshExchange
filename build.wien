@@ -1,2 +1,25 @@
-; Config for build this project (ONLY)
-; here will be builder
+.default {
+    targets = daemon client
+}
+
+.clean {
+    targets = wien-daemon wien-client *.o
+}
+
+.comp daemon {
+    cc = gcc
+    cflags = -O2 -Wall -std=c11
+    sources = ../../daemon.c 
+    output = wien-daemon
+}
+
+.comp client {
+    cc = gcc
+    cflags = -g -O0
+    sources = ../../client.c
+    output = wien-client
+}
+
+; .CALL daemon
+; .CALL client
+.text "Success"
