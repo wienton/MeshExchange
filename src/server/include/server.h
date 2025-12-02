@@ -1,7 +1,7 @@
 #ifndef SERVER_H
 #define SERVER_H
 
-#define DEFAULT_PORT 8124
+#define DEFAULT_PORT 1231
 #define DEFAULT_IP "127.0.0.1"
 
 // error 
