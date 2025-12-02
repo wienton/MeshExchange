@@ -3,6 +3,39 @@
 #include <unistd.h>
 #include <glob.h>
 
+// Подстановка переменной: если val — имя переменной → вернуть её значение
+// Иначе — вернуть val как есть.
+// Результат копируется в out_buffer (должен быть >= MAX_VALUE_LEN)
+void expand_value(const char* val, char* out_buffer) {
+    if (!val || !val[0]) {
+        out_buffer[0] = '\0';
+        return;
+    }
+
+    // Проверим: состоит ли val только из букв, цифр, подчёркиваний?
+    int is_identifier = 1;
+    for (const char* p = val; *p; p++) {
+        if (!((*p >= 'a' && *p <= 'z') ||
+              (*p >= 'A' && *p <= 'Z') ||
+              (*p >= '0' && *p <= '9') ||
+              (*p == '_'))) {
+            is_identifier = 0;
+            break;
+        }
+    }
+
+    if (is_identifier) {
+        const char* var_val = get_var(val);
+        if (var_val) {
+            snprintf(out_buffer, MAX_VALUE_LEN, "%s", var_val);
+            return;
+        }
+    }
+
+    // Если не переменная — копируем как есть
+    snprintf(out_buffer, MAX_VALUE_LEN, "%s", val);
+}
+
 void handle_call(const char* name) {
     if (skip_mode) return;
 
@@ -32,18 +65,30 @@ void handle_call(const char* name) {
         char* val = trim(eq + 1);
         if (!key[0] || !val[0]) continue;
 
-        if (strcmp(key, "cc") == 0) snprintf(cc, sizeof(cc), "%s", val);
-        else if (strcmp(key, "cflags") == 0) snprintf(cflags, sizeof(cflags), "%s", val);
-        else if (strcmp(key, "sources") == 0) snprintf(sources, sizeof(sources), "%s", val);
-        else if (strcmp(key, "output") == 0) snprintf(output, sizeof(output), "%s", val);
-        else if (strcmp(key, "ldflags") == 0) snprintf(ldflags, sizeof(ldflags), "%s", val);
+        char expanded_val[MAX_VALUE_LEN];
+
+        if (strcmp(key, "cc") == 0) {
+            expand_value(val, expanded_val);
+            snprintf(cc, sizeof(cc), "%s", expanded_val);
+        } else if (strcmp(key, "cflags") == 0) {
+            expand_value(val, expanded_val);
+            snprintf(cflags, sizeof(cflags), "%s", expanded_val);
+        } else if (strcmp(key, "sources") == 0) {
+            expand_value(val, expanded_val);
+            snprintf(sources, sizeof(sources), "%s", expanded_val);
+        } else if (strcmp(key, "output") == 0) {
+            expand_value(val, expanded_val);
+            snprintf(output, sizeof(output), "%s", expanded_val);
+        } else if (strcmp(key, "ldflags") == 0) {
+            expand_value(val, expanded_val);
+            snprintf(ldflags, sizeof(ldflags), "%s", expanded_val);
+        }
     }
 
-    // Если sources пустой — попробуем *.c
+    // Авто-исходники, если пусто
     if (sources[0] == '\0') {
         glob_t gl;
         if (glob("*.c", 0, NULL, &gl) == 0 && gl.gl_pathc > 0) {
-            // Собираем все .c файлы в строку
             sources[0] = '\0';
             for (size_t i = 0; i < gl.gl_pathc && strlen(sources) < sizeof(sources) - 10; i++) {
                 if (i > 0) strcat(sources, " ");
@@ -51,32 +96,25 @@ void handle_call(const char* name) {
             }
             globfree(&gl);
         } else {
-            fprintf(stderr, "❌ [%s] No source files found (sources not set and no *.c in dir)\n", name);
+            fprintf(stderr, "❌ [%s] No source files\n", name);
             return;
         }
     }
 
     // Проверка пересборки
     if (!needs_rebuild(output, sources)) {
-        printf("→ [%s] Already up to date.\n", name);
+        printf("→ [%s] Up to date.\n", name);
         return;
     }
 
-    // Формируем команду
+    // Компиляция
     char cmd[2048];
-    int len = snprintf(cmd, sizeof(cmd), "%s %s %s -o %s %s",
-        cc, cflags, sources, output, ldflags);
-    
-    if (len >= (int)sizeof(cmd)) {
-        fprintf(stderr, "❌ [%s] Command too long\n", name);
-        return;
-    }
-
+    snprintf(cmd, sizeof(cmd), "%s %s %s -o %s %s", cc, cflags, sources, output, ldflags);
     printf("→ [%s] Compiling → %s\n", name, output);
     int result = system(cmd);
     if (result == 0) {
-        printf("✅ [%s] Built successfully.\n", name);
+        printf("✅ [%s] Built.\n", name);
     } else {
-        fprintf(stderr, "❌ [%s] Compilation failed.\n", name);
+        fprintf(stderr, "❌ [%s] Failed.\n", name);
     }
 }

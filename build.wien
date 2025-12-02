@@ -1,25 +1,40 @@
 .default {
     targets = daemon client
 }
+; переменные для обозначения пути к клиенту 
+.var src_server ../../src/server/server.c
+.var src_client ../../src/client/client.c
 
+; debug
+.var debug 1
+
+.if debug 
+    .text "Debug Mode: ON"
+.endif
+
+; очистка
 .clean {
     targets = wien-daemon wien-client *.o
 }
 
-.comp daemon {
+; массив данных для компиляции сервера
+.comp server {
     cc = gcc
     cflags = -O2 -Wall -std=c11
-    sources = ../../daemon.c 
-    output = wien-daemon
+    sources = src_server
+    output = mesh-server
 }
 
+; массив данных для компиляции клиента 
 .comp client {
     cc = gcc
     cflags = -g -O0
-    sources = ../../client.c
-    output = wien-client
+    sources = src_client
+    output = mesh-client
 }
 
-; .CALL daemon
-; .CALL client
-.text "Success"
+.text "Wien Builder Start"
+
+.CALL server ; вызываем и компилируем сервер
+
+.CALL client ; вызываем и компилируем клиента
