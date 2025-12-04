@@ -1,0 +1,57 @@
+MeshExchange License v1.0
+Proprietary Software License
+Effective Date: November 1, 2025
+
+Copyright (c) 2025 NorthernHush. 
+All rights reserved.
+
+1. Grant of Limited License
+Permission is hereby granted to use the MeshExchange software (the “Software”)
+solely as a dependency or library within other software applications or systems,
+provided that such use complies with all of the following conditions:
+  a) The Software must be used in its original, unmodified form.
+  b) The Software may only be used as a library component; it may not be
+     altered, recompiled, or incorporated into derivative works.
+  c) The Software may not be redistributed, sublicensed, or published in whole
+     or in part, whether in source or binary form, without prior written
+     permission from the copyright holder.
+
+2. Prohibited Uses
+Without express written permission from the copyright holder, you may not:
+  a) modify, adapt, translate, reverse-engineer, decompile, disassemble,
+     or create derivative works of the Software;
+  b) distribute, republish, upload, or make the Software available to any
+     third parties in any form;
+  c) use the Software or any of its components for the purpose of developing
+     competing technologies, network systems, or cryptographic mechanisms
+     derived from MeshExchange.
+
+3. Ownership
+The Software is and shall remain the exclusive intellectual property of the
+copyright holder. This license grants no ownership rights and no transfer of
+intellectual property. All rights not expressly granted herein are reserved.
+
+4. Warranty Disclaimer
+The Software is provided “AS IS,” without warranty of any kind, express or
+implied, including but not limited to warranties of merchantability, fitness
+for a particular purpose, and noninfringement. The copyright holder shall not
+be liable for any direct, indirect, incidental, or consequential damages arising
+from the use or inability to use the Software.
+
+5. Termination
+Any violation of this license automatically terminates all rights granted
+herein. Upon termination, the licensee must immediately cease all use of the
+Software and destroy all copies in their possession.
+
+6. Governing Law and Jurisdiction
+This license shall be governed by and construed in accordance with the laws of
+the Russian Federation. Any disputes arising out of or related to this license
+shall be subject to the exclusive jurisdiction of the courts located in the
+Russian Federation.
+
+7. Contact
+For commercial licensing, redistribution, or partnership inquiries, please
+contact: 
+   email meshoff@proton.me
+   telegram: @wienton
+   website: http://wienton.ru/
