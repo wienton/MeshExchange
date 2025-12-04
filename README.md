@@ -43,7 +43,12 @@ Executables are placed in the project root.
 
 - **Source code**: [GitHub Repository](https://github.com/wienton/meshexchange)  
 - **`.wien` language guide**: [docs/wien-syntax.md](docs/wien-syntax.md)  
-- **License**: MIT  
+- **License**: MeshExchange LICENSE 2025
 - **Report issues**: [GitHub Issues](https://github.com/wienton/meshexchange/issues)  
 
 > Note: This project is built with clarity, performance, and auditability in mind — no frameworks, no bloat.
+
+## Contact for me
+
+- **Telegram:** [Telegram](https://t.me/wienton)
+- **Web:** [WebSite](http://wienton.ru/)
