@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <openssl/sha.h>
 #include <signal.h>
 #include <sys/inotify.h>
 #include <sys/stat.h>
@@ -14,6 +15,8 @@
 #include "utils/database/logs/dblogs.h"
 #include "crypto/crypto.h"
 #include "utils/mongo_writter/mongo_wr.h"
+
+#include "crypto/sha256/sha256.h"
 
 #define EVENT_BUF_LEN (1024 * (sizeof(struct inotify_event) + NAME_MAX + 1))
 
@@ -63,6 +66,35 @@ static void handle_file_event(const char *dir, const char *name, int is_delete) 
 }
 
 int main(void) {
+
+    // Create and initialize SHA256 context
+    SHA256_CTX *ctx = malloc(sizeof(SHA256_CTX));
+    if (!ctx) {
+        perror("malloc");
+        return 1;
+    }
+
+    if (SHA256_Init(ctx) != 1) {
+        fprintf(stderr, "SHA256_Init failed\n");
+        free(ctx);
+        return 1;
+    }
+
+    // Update with data
+    const char* data = "hello";
+    SHA256_Update(ctx, data, strlen(data));
+
+    // Finalize
+    unsigned char hash[SHA256_DIGEST_LENGTH];
+    SHA256_Final(hash, ctx);
+
+    // Print result (optional)
+    for (int i = 0; i < SHA256_DIGEST_LENGTH; i++) {
+        printf("%02x", hash[i]);
+    }
+    printf("\n");
+
+
     // Daemonize
     pid_t pid = fork();
     if (pid < 0) exit(EXIT_FAILURE);
@@ -142,5 +174,7 @@ int main(void) {
     mongodb_cleanup();
     dblog_close();
     log_info("Daemon stopped");
+
+    free(ctx);  // Clean up sha256
     return 0;
 }

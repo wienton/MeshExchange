@@ -4,6 +4,9 @@
 #define MONGO_URI "mongodb://127.0.0.1:27017"
 #define MONGO_DATABASE_NAME "exchange"
 #define MONGO_COLL_NAME "file_exchange"
+
+#define POLL_INTERVAL_SEC   10
+
 static const char* filename_docker = "../../../../docker-compose.yml";
 
 static const char* default_docker_compose = 

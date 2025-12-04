@@ -1,12 +1,194 @@
-[INFO] 2025-12-04 15:32:33 Successfully started docker-compose from: Successfully started docker-compose from: %s
-[DEBUG] 2025-12-04 15:32:33 Contents of docker-compose.yml:
-[INFO] 2025-12-04 15:32:33 Docker Compose started successfully
-[INFO] 2025-12-04 15:32:33  Database module initialized.
+[INFO] 2025-12-04 16:05:23 Successfully started docker-compose from: 'docker-compose.yml'
+[DEBUG] 2025-12-04 16:05:23 Contents of docker-compose.yml:
+[INFO] 2025-12-04 16:05:23 Docker Compose started successfully
+[INFO] 2025-12-04 16:05:23  Database module initialized.
 
-[INFO] 2025-12-04 15:32:33  app.log success initialize, check log file for view full information
-[INFO] 2025-12-04 15:33:00 Successfully started docker-compose from: Successfully started docker-compose from: %s
-[DEBUG] 2025-12-04 15:33:00 Contents of docker-compose.yml:
-[INFO] 2025-12-04 15:33:00 Docker Compose started successfully
-[INFO] 2025-12-04 15:33:00  Database module initialized.
+[INFO] 2025-12-04 16:05:23  app.log success initialize, check log file for view full information
 
-[INFO] 2025-12-04 15:33:00  app.log success initialize, check log file for view full information
+[INFO] 2025-12-04 16:05:23 MongoURI: mongodb://127.0.0.1:27017
+
+[INFO] 2025-12-04 16:05:23 MongoDB Name: exchange
+
+[INFO] 2025-12-04 16:05:23 MongoCollection Name: file_exchange
+
+[INFO] 2025-12-04 17:12:56 Successfully started docker-compose from: 'docker-compose.yml'
+[DEBUG] 2025-12-04 17:12:56 Contents of docker-compose.yml:
+[INFO] 2025-12-04 17:12:56 Docker Compose started successfully
+[INFO] 2025-12-04 17:12:56  Database module initialized.
+
+[INFO] 2025-12-04 17:12:56  app.log success initialize, check log file for view full information
+
+[INFO] 2025-12-04 17:12:56 
+ View MongoDatabase 'exchange' success started on thread 
+
+[INFO] 2025-12-04 17:13:10 Successfully started docker-compose from: 'docker-compose.yml'
+[DEBUG] 2025-12-04 17:13:10 Contents of docker-compose.yml:
+[INFO] 2025-12-04 17:13:10 Docker Compose started successfully
+[INFO] 2025-12-04 17:13:10  Database module initialized.
+
+[INFO] 2025-12-04 17:13:10  app.log success initialize, check log file for view full information
+
+[INFO] 2025-12-04 17:13:10 View MongoDatabase 'exchange' success started on thread 
+
+[INFO] 2025-12-04 17:14:13 Successfully started docker-compose from: 'docker-compose.yml'
+[DEBUG] 2025-12-04 17:14:13 Contents of docker-compose.yml:
+[INFO] 2025-12-04 17:14:13 Docker Compose started successfully
+[INFO] 2025-12-04 17:14:13  Database module initialized.
+
+[INFO] 2025-12-04 17:14:13  app.log success initialize, check log file for view full information
+
+[INFO] 2025-12-04 17:14:13 View MongoDatabase 'exchange' success started on thread 
+
+[INFO] 2025-12-04 17:14:27 Successfully started docker-compose from: 'docker-compose.yml'
+[DEBUG] 2025-12-04 17:14:27 Contents of docker-compose.yml:
+[INFO] 2025-12-04 17:14:27 Docker Compose started successfully
+[INFO] 2025-12-04 17:14:27  Database module initialized.
+
+[INFO] 2025-12-04 17:14:27  app.log success initialize, check log file for view full information
+
+[INFO] 2025-12-04 17:14:27 View MongoDatabase 'exchange' success started on thread 
+
+[INFO] 2025-12-04 17:14:41 Successfully started docker-compose from: 'docker-compose.yml'
+[DEBUG] 2025-12-04 17:14:41 Contents of docker-compose.yml:
+[INFO] 2025-12-04 17:14:41 Docker Compose started successfully
+[INFO] 2025-12-04 17:14:41  Database module initialized.
+
+[INFO] 2025-12-04 17:14:41  app.log success initialize, check log file for view full information
+
+[INFO] 2025-12-04 17:14:41 View MongoDatabase 'exchange' success started on thread 
+
+[INFO] 2025-12-04 17:14:55 Successfully started docker-compose from: 'docker-compose.yml'
+[DEBUG] 2025-12-04 17:14:55 Contents of docker-compose.yml:
+[INFO] 2025-12-04 17:14:55 Docker Compose started successfully
+[INFO] 2025-12-04 17:14:55  Database module initialized.
+
+[INFO] 2025-12-04 17:14:55  app.log success initialize, check log file for view full information
+
+[INFO] 2025-12-04 17:14:55 View MongoDatabase 'exchange' success started on thread 
+
+[INFO] 2025-12-04 17:15:19 Successfully started docker-compose from: 'docker-compose.yml'
+[DEBUG] 2025-12-04 17:15:19 Contents of docker-compose.yml:
+[INFO] 2025-12-04 17:15:19 Docker Compose started successfully
+[INFO] 2025-12-04 17:15:19  Database module initialized.
+
+[INFO] 2025-12-04 17:15:19  app.log success initialize, check log file for view full information
+
+[INFO] 2025-12-04 17:15:28 View MongoDatabase 'exchange' success started on thread 
+
+[INFO] 2025-12-04 17:18:46 Successfully started docker-compose from: 'docker-compose.yml'
+[DEBUG] 2025-12-04 17:18:46 Contents of docker-compose.yml:
+[INFO] 2025-12-04 17:18:46 Docker Compose started successfully
+[INFO] 2025-12-04 17:18:46  Database module initialized.
+
+[INFO] 2025-12-04 17:18:46  app.log success initialize, check log file for view full information
+
+[INFO] 2025-12-04 17:18:55 View MongoDatabase 'exchange' success started on thread 
+
+[INFO] 2025-12-04 17:21:08 Successfully started docker-compose from: 'docker-compose.yml'
+[DEBUG] 2025-12-04 17:21:08 Contents of docker-compose.yml:
+[INFO] 2025-12-04 17:21:08 Docker Compose started successfully
+[INFO] 2025-12-04 17:21:08  Database module initialized.
+
+[INFO] 2025-12-04 17:21:08  app.log success initialize, check log file for view full information
+
+[INFO] 2025-12-04 17:21:17 View MongoDatabase 'exchange' success started on thread 
+
+[INFO] 2025-12-04 17:21:39 Successfully started docker-compose from: 'docker-compose.yml'
+[DEBUG] 2025-12-04 17:21:39 Contents of docker-compose.yml:
+[INFO] 2025-12-04 17:21:39 Docker Compose started successfully
+[INFO] 2025-12-04 17:21:39  Database module initialized.
+
+[INFO] 2025-12-04 17:21:39  app.log success initialize, check log file for view full information
+
+[INFO] 2025-12-04 17:21:48 View MongoDatabase 'exchange' success started on thread 
+
+[INFO] 2025-12-04 17:23:13 Successfully started docker-compose from: 'docker-compose.yml'
+[DEBUG] 2025-12-04 17:23:13 Contents of docker-compose.yml:
+[INFO] 2025-12-04 17:23:13 Docker Compose started successfully
+[INFO] 2025-12-04 17:23:13  Database module initialized.
+
+[INFO] 2025-12-04 17:23:13  app.log success initialize, check log file for view full information
+
+[INFO] 2025-12-04 17:23:24 View MongoDatabase 'exchange' success started on thread 
+
+[INFO] 2025-12-04 17:23:59 Successfully started docker-compose from: 'docker-compose.yml'
+[DEBUG] 2025-12-04 17:23:59 Contents of docker-compose.yml:
+[INFO] 2025-12-04 17:23:59 Docker Compose started successfully
+[INFO] 2025-12-04 17:23:59  Database module initialized.
+
+[INFO] 2025-12-04 17:23:59  app.log success initialize, check log file for view full information
+
+[INFO] 2025-12-04 17:24:24 Successfully started docker-compose from: 'docker-compose.yml'
+[DEBUG] 2025-12-04 17:24:24 Contents of docker-compose.yml:
+[INFO] 2025-12-04 17:24:24 Docker Compose started successfully
+[INFO] 2025-12-04 17:24:24  Database module initialized.
+
+[INFO] 2025-12-04 17:24:24  app.log success initialize, check log file for view full information
+
+[INFO] 2025-12-04 17:24:34 Successfully started docker-compose from: 'docker-compose.yml'
+[DEBUG] 2025-12-04 17:24:34 Contents of docker-compose.yml:
+[INFO] 2025-12-04 17:24:34 Docker Compose started successfully
+[INFO] 2025-12-04 17:24:34  Database module initialized.
+
+[INFO] 2025-12-04 17:24:34  app.log success initialize, check log file for view full information
+
+[INFO] 2025-12-04 17:25:05 Successfully started docker-compose from: 'docker-compose.yml'
+[DEBUG] 2025-12-04 17:25:05 Contents of docker-compose.yml:
+[DEBUG] 2025-12-04 17:25:05 
+
+	finished view content docker-compose.yml
+
+
+[INFO] 2025-12-04 17:25:05 Docker Compose started successfully
+[INFO] 2025-12-04 17:25:05  Database module initialized.
+
+[INFO] 2025-12-04 17:25:05  app.log success initialize, check log file for view full information
+
+[INFO] 2025-12-04 17:25:23 Successfully started docker-compose from: 'docker-compose.yml'
+[DEBUG] 2025-12-04 17:25:23 Contents of docker-compose.yml:
+[INFO] 2025-12-04 17:25:23 Docker Compose started successfully
+[INFO] 2025-12-04 17:25:23  Database module initialized.
+
+[INFO] 2025-12-04 17:25:23  app.log success initialize, check log file for view full information
+
+[INFO] 2025-12-04 17:25:33 Successfully started docker-compose from: 'docker-compose.yml'
+[DEBUG] 2025-12-04 17:25:33 Contents of docker-compose.yml:
+[INFO] 2025-12-04 17:25:33 Docker Compose started successfully
+[INFO] 2025-12-04 17:25:33  Database module initialized.
+
+[INFO] 2025-12-04 17:25:33  app.log success initialize, check log file for view full information
+
+[INFO] 2025-12-04 17:25:44 View MongoDatabase 'exchange' success started on thread 
+
+[INFO] 2025-12-04 17:31:46 Successfully started docker-compose from: 'docker-compose.yml'
+[DEBUG] 2025-12-04 17:31:46 Contents of docker-compose.yml:
+[INFO] 2025-12-04 17:31:46 Docker Compose started successfully
+[INFO] 2025-12-04 17:31:46  Database module initialized.
+
+[INFO] 2025-12-04 17:31:46  app.log success initialize, check log file for view full information
+
+[INFO] 2025-12-04 17:45:35 Successfully started docker-compose from: 'docker-compose.yml'
+[DEBUG] 2025-12-04 17:45:35 Contents of docker-compose.yml:
+[INFO] 2025-12-04 17:45:35 Docker Compose started successfully
+[INFO] 2025-12-04 17:45:46 View MongoDatabase 'exchange' success started on thread 
+
+[INFO] 2025-12-04 17:46:45 Successfully started docker-compose from: 'docker-compose.yml'
+[DEBUG] 2025-12-04 17:46:45 Contents of docker-compose.yml:
+[INFO] 2025-12-04 17:46:45 Docker Compose started successfully
+[INFO] 2025-12-04 17:46:56 View MongoDatabase 'exchange' success started on thread 
+
+[DEBUG] 2025-12-04 17:46:56 right now records not have
+[DEBUG] 2025-12-04 17:47:06 right now records not have
+[INFO] 2025-12-04 17:48:22 Successfully started docker-compose from: 'docker-compose.yml'
+[DEBUG] 2025-12-04 17:48:22 Contents of docker-compose.yml:
+[INFO] 2025-12-04 17:48:22 Docker Compose started successfully
+[INFO] 2025-12-04 17:48:33 View MongoDatabase 'exchange' success started on thread 
+
+[DEBUG] 2025-12-04 17:48:33 right now records not have
+[DEBUG] 2025-12-04 17:48:43 right now records not have
+[INFO] 2025-12-04 17:49:18 Successfully started docker-compose from: 'docker-compose.yml'
+[DEBUG] 2025-12-04 17:49:18 Contents of docker-compose.yml:
+[INFO] 2025-12-04 17:49:18 Docker Compose started successfully
+[INFO] 2025-12-04 17:50:07 Successfully started docker-compose from: 'docker-compose.yml'
+[DEBUG] 2025-12-04 17:50:07 Contents of docker-compose.yml:
+[INFO] 2025-12-04 17:50:10 Docker Compose started successfully

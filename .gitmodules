@@ -1,0 +1,3 @@
+[submodule "SHA256Crypto"]
+	path = SHA256Crypto
+	url = https://github.com/wienton/SHA256Crypto

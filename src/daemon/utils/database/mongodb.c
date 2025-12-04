@@ -7,7 +7,13 @@
 #include "logs/dblogs.h"
 #include <ctype.h>
 
-int ensure_docker_compose(void) {
+// libflux header-only
+#include "../../../../lib/libflux/libflux.h"
+
+// error 
+#include "error/error.h"
+
+db_error_t ensure_docker_compose(void) {
     // Try to open for reading
     FILE* fp = fopen(filename_docker, "r");
     if (!fp) {
@@ -65,23 +71,28 @@ int auto_start_docker(void) {
         log_error("Failed to start docker-compose; check Docker status and compose file");
         return -1;
     }
-
+    sleep(3);
     log_info("Successfully started docker-compose from: 'docker-compose.yml'");
 
     fp = fopen(filename_docker, "r");
     if (fp) {
-        char line[512];
-        log_debug("Contents of docker-compose.yml:");
-        while (fgets(line, sizeof(line), fp)) {
-            // Remove trailing newline for clean logging
-            size_t len = strlen(line);
-            if (len > 0 && line[len - 1] == '\n') {
-                line[len - 1] = '\0';
-            }
-            printf("%s\n", line);
+        goto content_docker;
+   }
+
+content_docker:
+    char line[512];
+    log_debug("Contents of docker-compose.yml:");
+    sleep(3);
+    while (fgets(line, sizeof(line), fp)) {
+        // Remove trailing newline for clean logging
+        size_t len = strlen(line);
+        if (len > 0 && line[len - 1] == '\n') {
+            line[len - 1] = '\0';
         }
-        fclose(fp);
-  }
+        printf("%s\n", line);
+    }
+    print_info("finished view content docker-compose.yml\n\n");
+    fclose(fp);
 /*
     if (ensure_docker_compose() != 0) {
         return -1;
@@ -135,16 +146,19 @@ int connect_mongoc(void){
 start_container:
     auto_start_docker();
 
-    
+    sleep(3);
     // logs from file
     print_ok("\tSuccess ping database with admin\n");
+    
     print_info("\tConfiguration connect: \n");
     print_green("Mongo URI: %s\n", MONGO_URI);
     print_green("MongoDatabase name: %s\n", MONGO_DATABASE_NAME);
+ 
     print_green("MongoCollection name: %s\n", MONGO_COLL_NAME);
-    log_info(" Database module initialized.\n");
-    log_info(" app.log success initialize, check log file for view full information");
+    print_info(" Database module initialized.\n");
+    print_info(" app.log success initialize, check log file for view full information\n");
 
+   
     mongoc_collection_destroy(collection);
     mongoc_client_destroy(client);
 
@@ -152,7 +166,71 @@ start_container:
     return 0;
 }
 
+int view_status_database() {
+
+    mongoc_client_t *client = mongoc_client_new(MONGO_URI);
+    if (!client) {
+        fprintf(stderr, "error: failed to connect to MongoDB\n");
+        exit(EXIT_FAILURE);
+    }
+
+    mongoc_collection_t *collection = mongoc_client_get_collection(client, MONGO_DATABASE_NAME, MONGO_COLL_NAME);
+    if (!collection) {
+        fprintf(stderr, "error: cannot access collection %s.%s\n", MONGO_DATABASE_NAME, MONGO_COLL_NAME);
+        mongoc_client_destroy(client);
+        exit(EXIT_FAILURE);
+    }
+
+    for(int i = 0; i < 3; ++i) {print_ok("%d module initialize...\n", i); sleep(3);}
+
+    sleep(2);
+
+    log_info("View MongoDatabase 'exchange' success started on thread \n");
+
+    for(;;) {goto mongo_viewer;}
+
+mongo_viewer:
+    printf("[MONITOR] Monitor MongoDatabase Success Started [%s.%s]", MONGO_DATABASE_NAME, MONGO_COLL_NAME);
+
+    while (1) {
+        bson_t query = BSON_INITIALIZER;
+        mongoc_cursor_t *cursor = mongoc_collection_find_with_opts(collection, &query, NULL, NULL);
+	
+        bool found = false;
+        const bson_t *doc;
+        while (mongoc_cursor_next(cursor, &doc)) {
+            char *json = bson_as_relaxed_extended_json(doc, NULL);
+            if (json) {
+                printf("%s\n", json);
+                bson_free(json);
+                found = true;
+            }
+        }
+
+        bson_error_t error;
+        if (mongoc_cursor_error(cursor, &error)) {
+            fprintf(stderr, "cursor error: %s\n", error.message);
+        }
+
+        if (!found) {
+            log_debug("right now records not have");
+        }
+
+        mongoc_cursor_destroy(cursor);
+        bson_destroy(&query);
+
+        sleep(POLL_INTERVAL_SEC);
+    }
+
+
+}
+
+
 int main(void) {
+
+    db_error_t db_err_t;
+
+    printf("db_err_t success connect");
 
     // init log function 
     if(dblog_init("app.log")) {fprintf(stderr, "error init logger");}
@@ -162,6 +240,8 @@ int main(void) {
     // init database from function
     if(connect_mongoc()) {fprintf(stderr, "error init mongo from main, check your function or logs\n");}
 
+
+    if(view_status_database()) {fprintf(stderr, "error view monitor initialize from main"); return -1;}
 
     dblog_close();
     
