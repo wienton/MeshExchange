@@ -8,9 +8,9 @@
 .var src_server ../../src/server/server.c
 .var src_client ../../src/client/client.c
 .var src_daemon ../../src/daemon/daemon.c
-.var dima Дима писюнчик такой секс просто
 
-.text dima
+.var output_client client
+.var output_server server
 
 ; debug
 .var debug 1
@@ -27,9 +27,9 @@
 ; массив данных для компиляции сервера
 .comp server {
     cc = gcc
-    cflags = -O2 -Wall -std=c11
+    cflags = -O2 -Wall -std=c11 -pthread
     sources = src_server
-    output = mesh-server
+    output = output_server
 }
 
 ; массив данных для компиляции клиента 
@@ -37,13 +37,12 @@
     cc = gcc
     cflags = -g -O0
     sources = src_client
-    output = mesh-client
+    output = output_client
 }
 
-.text "Wien Builder Start"
-
-.text "Дима писюнчик маленький такой"
+.text "Success Built server"
 
 .CALL server ; вызываем и компилируем сервер
 
+.text "Success Built client"
 .CALL client ; вызываем и компилируем клиента
