@@ -226,7 +226,24 @@ mongo_viewer:
 }
 
 
+STATUS_CONNECT init_module() {
+   const char* moduleArray[] = {filename_docker, "mongodb", "redis"};
+   size_t numModules = sizeof(moduleArray) / sizeof(moduleArray[0]);
+
+    print_blue("\n\n\tSuccess init module for database MONGO!\n\n");
+
+    print_blue("\n\n\t Module Info: \n\n");
+
+
+    for(int i = 0; i < numModules; i++) {
+        printf("module[%d] %s\n", i, moduleArray[i]);
+        sleep(1);
+    }
+
+}
+
 int main(void) {
+    init_module();
 
     db_error_t db_err_t;
 

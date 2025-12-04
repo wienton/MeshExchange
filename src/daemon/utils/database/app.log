@@ -1,2 +1,34 @@
 [INFO] 2025-12-04 18:42:50 Successfully started docker-compose from: 'docker-compose.yml'
 [DEBUG] 2025-12-04 18:42:50 Contents of docker-compose.yml:
+[ERROR] 2025-12-04 20:08:35 Mongo Ping failed!
+
+[INFO] 2025-12-04 20:08:35 Start docker container from 'Start docker container from '%s''
+[INFO] 2025-12-04 20:08:38 Successfully started docker-compose from: 'docker-compose.yml'
+[DEBUG] 2025-12-04 20:08:38 Contents of docker-compose.yml:
+[INFO] 2025-12-04 20:08:41 Docker Compose started successfully
+[INFO] 2025-12-04 20:08:55 View MongoDatabase 'exchange' success started on thread 
+
+[DEBUG] 2025-12-04 20:08:55 right now records not have
+[DEBUG] 2025-12-04 20:09:05 right now records not have
+[DEBUG] 2025-12-04 20:09:15 right now records not have
+[DEBUG] 2025-12-04 20:09:25 right now records not have
+[DEBUG] 2025-12-04 20:09:35 right now records not have
+[INFO] 2025-12-04 20:25:14 Successfully started docker-compose from: 'docker-compose.yml'
+[DEBUG] 2025-12-04 20:25:14 Contents of docker-compose.yml:
+[INFO] 2025-12-04 20:25:17 Docker Compose started successfully
+[INFO] 2025-12-04 20:25:23 Successfully started docker-compose from: 'docker-compose.yml'
+[DEBUG] 2025-12-04 20:25:23 Contents of docker-compose.yml:
+[INFO] 2025-12-04 20:25:26 Docker Compose started successfully
+[ERROR] 2025-12-05 01:06:30 Mongo Ping failed!
+
+[INFO] 2025-12-05 01:06:30 Start docker container from 'Start docker container from '%s''
+[INFO] 2025-12-05 01:11:11 Successfully started docker-compose from: 'docker-compose.yml'
+[DEBUG] 2025-12-05 01:11:11 Contents of docker-compose.yml:
+[INFO] 2025-12-05 01:14:06 Successfully started docker-compose from: 'docker-compose.yml'
+[DEBUG] 2025-12-05 01:14:06 Contents of docker-compose.yml:
+[INFO] 2025-12-05 01:14:25 Successfully started docker-compose from: 'docker-compose.yml'
+[DEBUG] 2025-12-05 01:14:25 Contents of docker-compose.yml:
+[INFO] 2025-12-05 01:14:28 Docker Compose started successfully
+[INFO] 2025-12-05 01:14:42 View MongoDatabase 'exchange' success started on thread 
+
+[DEBUG] 2025-12-05 01:14:42 right now records not have

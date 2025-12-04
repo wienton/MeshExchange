@@ -24,6 +24,16 @@ static const char* default_docker_compose =
 
 #include <stdio.h>
 
+
+typedef enum {
+
+    CONNECT_1,
+    CONNECT_ERR_2 __attribute__((unused)),
+    CONNECT_ERR_3,
+
+} STATUS_CONNECT;
+
+
 // colors
 #define C_BLACK   "\033[30m"
 #define C_RED     "\033[31m"
