@@ -1,5 +1,5 @@
 
-![Описание изображения](images/anime.jpg)
+![BackgroundRepository](images/anime.jpg)
 
 # MeshExchange
 
