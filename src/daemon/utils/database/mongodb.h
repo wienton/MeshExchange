@@ -6,6 +6,19 @@
 #define MONGO_COLL_NAME "file_exchange"
 static const char* filename_docker = "../../../../docker-compose.yml";
 
+static const char* default_docker_compose = 
+"version: \"3.9\"\n"
+"services:\n"
+"  mongodb:\n"
+"    image: mongo:latest\n"
+"    ports:\n"
+"      - \"27017:27017\"\n"
+"    volumes:\n"
+"      - mongodb_data:/data/db\n"
+"volumes:\n"
+"  mongodb_data:\n";
+
+
 #include <stdio.h>
 
 // colors

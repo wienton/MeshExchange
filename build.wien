@@ -8,6 +8,9 @@
 .var src_server ../../src/server/server.c
 .var src_client ../../src/client/client.c
 .var src_daemon ../../src/daemon/daemon.c
+.var dima Дима писюнчик такой секс просто
+
+.text dima
 
 ; debug
 .var debug 1
@@ -21,12 +24,6 @@
     targets = wien-daemon wien-client *.o
 }
 
-.comp daemon {
-    cc = gcc
-    cflags = -O2 -Wall -std=c11 -lssl -lcrypto
-    sources = src_daemon
-    output = mesh-daemon
-}
 ; массив данных для компиляции сервера
 .comp server {
     cc = gcc
@@ -45,8 +42,8 @@
 
 .text "Wien Builder Start"
 
+.text "Дима писюнчик маленький такой"
+
 .CALL server ; вызываем и компилируем сервер
 
 .CALL client ; вызываем и компилируем клиента
-
-.CALL daemon
