@@ -73,26 +73,7 @@ int main(void) {
         perror("malloc");
         return 1;
     }
-
-    if (SHA256_Init(ctx) != 1) {
-        fprintf(stderr, "SHA256_Init failed\n");
-        free(ctx);
-        return 1;
-    }
-
-    // Update with data
-    const char* data = "hello";
-    SHA256_Update(ctx, data, strlen(data));
-
-    // Finalize
-    unsigned char hash[SHA256_DIGEST_LENGTH];
-    SHA256_Final(hash, ctx);
-
-    // Print result (optional)
-    for (int i = 0; i < SHA256_DIGEST_LENGTH; i++) {
-        printf("%02x", hash[i]);
-    }
-    printf("\n");
+    SHA
 
 
     // Daemonize
