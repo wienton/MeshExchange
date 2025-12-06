@@ -35,7 +35,7 @@
 ; массив данных для компиляции клиента 
 .comp client {
     cc = gcc
-    cflags = -g -O0
+    cflags = -g -O0 -Wall
     sources = src_client
     output = output_client
 }
