@@ -1,9 +1,10 @@
 #ifndef MONGODB_H
 #define MONGODB_H
-
+// params for mongo database
 #define MONGO_URI "mongodb://127.0.0.1:27017"
 #define MONGO_DATABASE_NAME "exchange"
 #define MONGO_COLL_NAME "file_exchange"
+#define MAX_CMD_LEN 256
 
 #define POLL_INTERVAL_SEC   10
 

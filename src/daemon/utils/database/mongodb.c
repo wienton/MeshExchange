@@ -1,3 +1,7 @@
+/**
+    * @brief mongodb module
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -12,6 +16,7 @@
 
 // error 
 #include "error/error.h"
+
 
 db_error_t ensure_docker_compose(void) {
     // Try to open for reading
@@ -78,7 +83,6 @@ int auto_start_docker(void) {
     if (fp) {
         goto content_docker;
    }
-
 content_docker:
     char line[512];
     log_debug("Contents of docker-compose.yml:");
@@ -242,7 +246,122 @@ STATUS_CONNECT init_module() {
 
 }
 
+char* execute_command(const char* cmd) {
+    FILE* fp = popen(cmd, "r");
+    if (fp == NULL) {
+        perror("Failed to run command");
+        return NULL;
+    }
+
+    char buffer[1024];
+    char* result = NULL;
+    size_t total_size = 0;
+
+    while (fgets(buffer, sizeof(buffer), fp) != NULL) {
+        size_t current_len = strlen(buffer);
+        result = (char*)realloc(result, total_size + current_len + 1);
+        if (result == NULL) {
+            perror("Memory allocation failed");
+            pclose(fp);
+            return NULL;
+        }
+        strcpy(result + total_size, buffer);
+        total_size += current_len;
+    }
+    pclose(fp);
+    return result;
+}
+
+int check_docker_running() {
+    printf("Checking system...\n");
+
+    // 1. Проверка операционной системы
+    char* os_name = NULL;
+    char command[MAX_CMD_LEN];
+
+    // Попытка определить OS, начиная с самых распространенных
+    if (access("/etc/os-release", F_OK) == 0) { // Linux
+        sprintf(command, "grep -E '^ID=' /etc/os-release | cut -d'=' -f2 | tr -d '\"'");
+        os_name = execute_command(command);
+        if (os_name) {
+            // Удаляем возможные символы новой строки и пробелы с конца
+            size_t len = strlen(os_name);
+            while (len > 0 && (os_name[len-1] == '\n' || isspace(os_name[len-1]))) {
+                os_name[--len] = '\0';
+            }
+            printf("Detected OS: Linux (%s)\n", os_name);
+            free(os_name); // Освобождаем память после использования
+            os_name = NULL;
+        } else {
+            printf("Detected OS: Linux (could not determine specific distribution)\n");
+        }
+    } else if (access("/System/Library/CoreServices/SystemVersion.plist", F_OK) == 0) { // macOS
+        printf("Detected OS: macOS\n");
+    } else if (access("C:\\Windows\\System32\\dllhost.exe", F_OK) == 0) { // Простой способ для Windows
+        printf("Detected OS: Windows\n");
+    } else {
+        printf("Could not determine OS. Proceeding with generic checks.\n");
+    }
+
+    // 2. Проверка, установлен ли Docker
+    printf("Checking if Docker is installed...\n");
+    if (system("which docker > /dev/null 2>&1") != 0) {
+        printf("Docker is not installed.\n");
+        char choice;
+        printf("Do you want to install Docker? (y/n): ");
+        if (scanf(" %c", &choice) != 1) { // Пробел перед %c, чтобы съесть предыдущие символы новой строки
+            printf("Invalid input. Aborting.\n");
+            return -1; // Возвращаем ошибку, если ввод некорректный
+        }
+
+        if (choice == 'y' || choice == 'Y') {
+            printf("Please refer to the official Docker documentation for installation instructions for your OS.\n");
+            printf("For Linux: https://docs.docker.com/engine/install/\n");
+            printf("For macOS: https://docs.docker.com/desktop/install/mac-install/\n");
+            printf("For Windows: https://docs.docker.com/desktop/install/windows-install/\n");
+            return 0; // Докер не установлен, но пользователь хочет установить
+        } else {
+            printf("Docker installation skipped by user.\n");
+            return 0; // Докер не установлен, и пользователь отказался устанавливать
+        }
+    }
+
+    // 3. Если Docker установлен, проверяем, запущен ли он
+    printf("Docker is installed. Checking if it's running...\n");
+
+    // Используем `docker info` или `docker ps`, чтобы понять, запущен ли демон
+    // `docker info` более надежен, так как `docker ps` может быть пуст, но демон работает
+    char* docker_info_output = execute_command("docker info");
+    if (docker_info_output == NULL) {
+        printf("Failed to get Docker info. Possible issue with Docker daemon.\n");
+        return -1; // Ошибка выполнения команды
+    }
+
+    // Ищем ключевую фразу, которая указывает на то, что демон не запущен
+    if (strstr(docker_info_output, "Cannot connect to the Docker daemon") != NULL ||
+        strstr(docker_info_output, "Client: Error during connect") != NULL) {
+        printf("Docker daemon is not running.\n");
+        free(docker_info_output); // Освобождаем память
+        return 0; // Докер не запущен
+    }
+
+    free(docker_info_output); // Освобождаем память
+    printf("Docker daemon is running.\n");
+    return 1; // Докер запущен
+}
+// main
 int main(void) {
+
+    int status = check_docker_running();
+
+    if (status == 1) {
+        printf("\nResult: Docker is running.\n");
+    } else if (status == 0) {
+        printf("\nResult: Docker is not running or not installed, or user opted not to install.\n");
+    } else {
+        printf("\nResult: An error occurred.\n");
+    }
+
     init_module();
 
     db_error_t db_err_t;
